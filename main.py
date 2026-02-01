@@ -7,6 +7,7 @@ app = Flask(__name__)
 client = bigquery.Client()
 
 @app.route('/')
+
 def main(big_query_client=client):
     table_id = "realworld-mlops-gcp.test_schema.us_states"
     job_config = bigquery.LoadJobConfig(
@@ -25,4 +26,5 @@ def main(big_query_client=client):
     return {"data": destination_table.num_rows}
 
 if __name__ == "__main__":
+
     app.run(debug=True, host="127.0.0.1", port=int(os.environ.get("PORT", 5566)))
